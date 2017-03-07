@@ -6,7 +6,7 @@ module EbayClient
 
     initializer 'ebay_client.load_configuration' do
       configurations = EbayClient::Configuration.load Rails.root.join(*CONFIG_FILE_PATH)
-      configuration = configurations[Rails.env]
+      configuration = configurations[Rails.env || :defaults]
 
       EbayClient.api = EbayClient::Api.new configuration
     end
